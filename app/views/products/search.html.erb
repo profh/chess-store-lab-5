@@ -1,0 +1,36 @@
+<h1>Search</h1>
+
+<p>You searched for: <strong><%= raw @q %></strong></p>
+
+<div style="text-align:right;">
+  order by: <% %w(name upc price).each do |sort| %>
+    <%= link_to sort, {:action => 'search', :order => sort, :page => params[:page] || 1} %>
+  <% end %>
+</div>
+
+<% num_cols = 5 %>
+<table cellpadding="10" cellspacing="0" border="0" width="100%">
+  <tr>
+    <% @products.each_with_index do |product, index| %>
+    <% if index%num_cols == 0 %>
+    </tr><tr>
+    <% end %>
+      <td align="center" width="<%= 100.0/num_cols %>%">
+        <h3><%= link_to product.name, product_path(session[:session_secret], product) %></h3>
+        <div class="photo">
+          <%#= link_to image_tag(product.image.url(:thumb)), product %>
+        </div>
+        <div>
+          <ul>
+            <li><strong>UPC:</strong> <%= product.upc %></li>
+            <li><strong>Price: <%= number_to_currency(product.price, :precision => 2) %></strong></li>
+          </ul>
+        </div>
+      </td>
+    <% end %>
+  </tr>
+</table>
+
+<div style="text-align:center; margin-top:20px;">
+  <%= will_paginate @products %>
+</div>

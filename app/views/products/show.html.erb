@@ -1,0 +1,39 @@
+<h2><%= @product.name %></h2>
+
+<div class="photo left">
+  <%#= link_to image_tag(@product.image.url(:medium)), @product.image.url(:large), :target => '_BLANK' %>
+</div>
+
+<p><%= @product.description %></p>
+
+<p>
+  <b>Price:</b>
+  <%= @product.price %>
+</p>
+
+<p>
+  <%= form_tag add_to_cart_path, :method => :post do %>
+    <%= hidden_field_tag :product_id, @product.id %>
+    <a href="#add" onclick="javascript:$(this).parent().submit();">add to cart</a>
+  <% end %>
+</p>
+
+<div class="clear"></div>
+
+<div id="reviews">
+  <h2>Reviews for <%= @product.name %></h2>
+  
+  <table cellpadding="10" cellspacing="0" border="0" width="100%">
+    <% @product.reviews.each do |review| %>
+    <tr valign="middle">
+      <td width="150px" align="center"><%= review.user.nil? ? 'Anonymous' : link_to(review.user.name, review.user) %></td>
+      <td><%= raw(review.review) %></td>
+    </tr>
+    <% end %>
+  </table>
+  
+  <%= form_for [@product, @product.reviews.build], :url => product_reviews_path(session[:session_secret], @product) do |f| %>
+    <%= f.text_area :review, :cols => 50, :rows => 6 %><br />
+    <%= f.submit 'post my review' %>
+  <% end %>
+</div>

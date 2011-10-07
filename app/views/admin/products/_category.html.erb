@@ -1,0 +1,12 @@
+<li>
+  <label>
+    <%= check_box_tag 'product[category_ids][]', category.id, product.categories.include?(category) %>
+    <%= category.name %>
+  </label>
+
+  <ul>
+    <% category.children.each do |sub_category| %>
+      <%= render :partial => 'admin/products/category', :locals => { :product => product, :category => sub_category } %>
+    <% end %>
+  </ul>
+</li>

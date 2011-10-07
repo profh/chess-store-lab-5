@@ -1,0 +1,27 @@
+<h1>Categories</h1>
+
+<%= link_to 'add category', new_admin_category_path %>
+
+<ul>
+  <% @categories.each do |category| %>
+    <%= render :partial => 'admin/categories/category', :locals => { :category => category } %>
+  <% end %>
+</ul>
+
+<table cellpadding="5" cellspacing="0" border="0" width="100%">
+  <tr>
+    <th width="10px">&nbsp;</th>
+    <th width="175px"><%= link_to 'upc', admin_products_path(:order => :upc) %></th>
+    <th><%= link_to 'title', admin_products_path(:order => :title) %></th>
+  </tr>
+  
+  <% @categories.each do |category| %>
+  <tr href="<%= edit_admin_category_path(category) %>">
+    <td align="center"><%= link_to 'x', admin_category_path(category), :method => :delete %></td>
+    <td><%= category.code %></td>
+    <td><%= category.name %></td>
+  </tr>
+  <% end %>
+</table>
+
+<%= link_to 'add category', new_admin_category_path %>

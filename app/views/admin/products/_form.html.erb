@@ -1,0 +1,36 @@
+<%= form_for [:admin, @product], :html => { :multipart => true } do |f| %>
+  <div class="field">
+    <%= f.label :upc %><br />
+    <%= f.text_field :upc %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br />
+    <%= f.text_field :price %>
+  </div>
+  
+  <div class="field">
+    <%= image_tag @product.image.url(:thumb) unless @product.image.nil? %>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+  
+  <div class="field">
+    <ul>
+      <% Category.roots.each do |category| %>
+        <%= render :partial => 'admin/products/category', :locals => { :product => @product, :category => category } %>
+      <% end %>
+    </ul>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

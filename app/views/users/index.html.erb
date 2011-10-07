@@ -1,0 +1,27 @@
+<h1>All users</h1>
+
+<p>Welcome to the super awesome secure site where you can see almost everything!</p>
+
+<table>
+  <tr>
+    <th>first name</th>
+    <th>last name</th>
+    <th>is_admin?</th>
+		<th>user id</th>
+		<th>race</th>
+    <!-- <th>username</th>
+    <th>password</th> -->
+  </tr>
+  
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.first_name %></td>
+    <td><%= user.last_name %></td>
+    <td><%= user.is_admin %></td>
+		<td><%= user.id %></td>
+		<td><%= raw(user.race) %></td>
+    <!-- <td><%# user.username %></td>
+    <td><%# user.password %></td> -->
+  </tr>
+<% end %>
+</table>

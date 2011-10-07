@@ -1,0 +1,35 @@
+<h1>Welcome <%= @user.name %></h1>
+
+<%= form_tag user_path(session[:session_secret], @user), :method => :put do %>
+  <table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+      <td align="right" width="125">first name</td>
+      <td><%= text_field(:user, :first_name) %></td>
+    </tr>
+  
+    <tr>
+      <td align="right">last name</td>
+      <td><%= text_field(:user, :last_name) %></td>
+    </tr>
+  
+    <tr>
+      <td align="right">username</td>
+      <td><%= text_field(:user, :username) %></td>
+    </tr>
+    
+    <tr>
+      <td colspan="2" align="right">
+        <%= submit_tag 'Update Account' %>
+      </td>
+    </tr>
+  </table>
+<% end %>
+
+<br />
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tr>
+    <td width="125" align="right">password</td>
+    <td><%= link_to 'change', change_password_path(session[:session_secret]) %></td>
+  </tr>
+</table>

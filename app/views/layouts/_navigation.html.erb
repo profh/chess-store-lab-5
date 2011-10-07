@@ -1,0 +1,7 @@
+<ul id="navigation">
+	<% Category.where(:session_id => session[:session_id]).sorted.each do |link| %>
+		<li><%= link_to link.name.html_safe, products_path(session[:session_secret], link) %></li>
+	<% end %>
+</ul>
+
+<div class="clear"></div>

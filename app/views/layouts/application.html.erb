@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DVRA - Damn Vulnerable Rails App</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+	<!-- Guys, I set up a default 'admin' account automatically for us to use in testing and the like. Password the same ...as usual.  -->
+</head>
+<body>
+	
+	<%= render :partial => 'layouts/info_bar' %>
+	
+	<div id="wrapper">
+		
+		<div id="content">
+			<%= render :partial => 'layouts/header' %>
+			<%= render :partial => 'layouts/navigation' %>
+			<%= breadcrumbs(nil) %>
+			<%= render :partial => 'layouts/flash', :locals => { :flash => flash } %>
+			
+			<%= yield %>
+			
+			<div class="clear"></div>
+		</div>
+		
+		<%= render :partial => 'layouts/footer' %>
+	</div>
+
+</body>
+</html>

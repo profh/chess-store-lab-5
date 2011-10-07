@@ -1,0 +1,1 @@
+Dvra::Application.config.secret_token = 'bce58d0ee4b766ee99111681d836bb920f022fc488074b4ff99f027dac36afab0e518ff6243be1c44a1464dbef85e9286c4ca82a13c6e016453011fd46fb7085'

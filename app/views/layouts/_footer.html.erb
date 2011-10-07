@@ -1,0 +1,16 @@
+<div id="footer">
+	<div class="left">
+	  <%= form_tag join_mailing_list_path do %>
+  		<%= text_field_tag :email %>
+  		<%= submit_tag :go %>
+		<% end %>
+	</div>
+	
+	<ul class="right">
+		<% %w(about\ us customer\ service contact\ us sitemap).each do |link| %>
+			<li><%= link_to link, statics_path(:page => link.parameterize.gsub(/-/, '_')) %></li>
+		<% end %>
+	</ul>
+	
+	<%= image_tag 'rails.png' %>
+</div>

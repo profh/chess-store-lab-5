@@ -1,0 +1,44 @@
+<h1>My Cart</h1>
+
+<div style="text-align: right;">
+  * setting an item's qty = 0 will remove it from your cart
+</div>
+
+<table cellpadding="5" cellspacing="0" border="0" width="100%">
+  <tr>
+    <th width="50">qty</th>
+    <th>product</th>
+    <th width="70">price</th>
+    <th width="70">total</th>
+  </tr>
+  
+  <% running_sum = 0 %>
+  <% unless session[:cart][:items].empty? %>
+    <% session[:cart][:items].each_pair do |product_id, qty| %>
+    <% product = Product.find(product_id) %>
+    <% running_sum += product.price*qty %>
+      <tr>
+        <td align="center">
+          <%= form_tag update_cart_item_path(session[:session_secret], product), :method => :put do %>
+            <%= text_field_tag :qty, qty, :style => 'width: 20px; text-align: center;', :onblur => 'javascript:$(this).parent().submit();' %>
+          <% end %>
+        </td>
+        <td>
+          <strong><%= product.name %></strong>
+          <p><%= truncate(product.description, :length => 90) %></p>
+        </td>
+        <td align="right"><%= number_to_currency(product.price, :precision => 2) %></td>
+        <td align="right"><%= number_to_currency(product.price*qty, :precision => 2) %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="4" align="center">You have no items in your cart.<br /><br /><%= link_to 'click here', store_path %> to return to the storefront</td>
+    </tr>
+  <% end %>
+  
+  <tr>
+    <td colspan="3" align="right"><strong>Total:</strong></td>
+    <td align="right"><%= number_to_currency(running_sum, :precision => 2) %></td>
+  </tr>
+</table>

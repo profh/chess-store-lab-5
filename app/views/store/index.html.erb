@@ -1,0 +1,44 @@
+<div class="left" style="width: 250px;">
+  <div class="widget">
+    <div class="header">Featured Product</div>
+    <div class="content" style="text-align: center;">
+      <h3><%#= link_to @featured_product.name, @featured_product %></h3>
+      <div class="photo">
+        <%#= link_to image_tag(product.image.url(:thumb)), product %>
+      </div>
+      <div>
+        <ul>
+          <li><strong>UPC:</strong> <%#= @featured_product.upc %></li>
+          <li><strong>Price: <%#= number_to_currency(@featured_product.price, :precision => 2) %></strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="right" style="width: 660px;">
+  <h2>Top products</h2>
+  
+  <% num_cols = 4 %>
+  <table cellpadding="10" cellspacing="0" border="0" width="100%">
+    <tr>
+      <% @products.each_with_index do |product, index| %>
+      <% if index%num_cols == 0 %>
+      </tr><tr>
+      <% end %>
+        <td align="center" width="<%= 100.0/num_cols %>%">
+          <h3><%= link_to product.name, product_path(session[:session_secret], product) %></h3>
+          <div class="photo">
+            <%#= link_to image_tag(product.image.url(:thumb)), product %>
+          </div>
+          <div>
+            <ul>
+              <li><strong>UPC:</strong> <%= product.upc %></li>
+              <li><strong>Price: <%= number_to_currency(product.price, :precision => 2) %></strong></li>
+            </ul>
+          </div>
+        </td>
+      <% end %>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,13 @@
+<% flash.each do |fk,fv| %>
+  <div class="flash" id="<%= fk %>">
+    <% if fv.is_a?(Array) %>
+      <ul>
+        <% fv.each do |v| %>
+          <li><%= raw v %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <%= raw fv %>
+    <% end %>
+  </div>
+<% end unless flash.nil? || flash.empty? || flash.blank? %>

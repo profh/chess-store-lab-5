@@ -1,0 +1,25 @@
+<h1>Products</h1>
+
+<%= link_to 'add product', new_admin_product_path %>
+
+<table cellpadding="5" cellspacing="0" border="0" width="100%">
+  <tr>
+    <th width="10px">&nbsp;</th>
+    <th width="175px"><%= link_to 'upc', admin_products_path(:order => :upc) %></th>
+    <th><%= link_to 'title', admin_products_path(:order => :title) %></th>
+    <th width="100px"><%= link_to 'price', admin_products_path(:order => :price) %></th>
+  </tr>
+  
+  <% @products.each do |product| %>
+  <tr href="<%= edit_admin_product_path(product) %>">
+    <td align="center"><%= link_to 'x', admin_product_path(product), :method => :delete %></td>
+    <td><%= product.upc %></td>
+    <td><%= product.title %></td>
+    <td align="right"><%= number_to_currency(product.price) %></td>
+  </tr>
+  <% end %>
+</table>
+
+<%= will_paginate @products %>
+
+<%= link_to 'add product', new_admin_product_path %>

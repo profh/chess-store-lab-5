@@ -1,0 +1,33 @@
+<div id="header">
+	
+  <h1 class="left">
+    <%= link_to store_path do %>
+      <span>Chess</span>Store
+    <% end %>
+  </h1>
+	
+	<div class="right">
+		<%= form_tag product_search_path, :method => :get do %>
+			<%= text_field_tag 'q' %>
+			<%= submit_tag :go %>
+		<% end %>
+	</div>
+	
+	<div class="clear"></div>
+	
+	<ul class="right">	
+  	<% if logged_in? %>
+  	  <% if current_user.is_admin? %>
+  	    <li><%= link_to 'admin', users_path %></li>
+  	  <% end %>
+  		<li><%= link_to 'my account', user_path(session[:session_secret], current_user) %></li>
+  		<li><%= link_to 'logout', logout_path, :method => :delete %></li>
+  	<% else %>
+  		<li><%= link_to 'login', login_path %></li>
+  		<li><%= link_to 'register', new_user_path %></li>
+  	<% end %>
+  	<li><%= link_to "cart (#{session[:cart].nil? ? 0 : session[:cart][:items].size})", cart_path %></li>
+	</ul>
+	
+	<div class="clear" style="height: 10px;"></div>
+</div>
